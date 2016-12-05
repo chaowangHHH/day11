@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Document</title>
+    <script type="text/javascript" src="touch.js"></script>
+    <script type="text/javascript" src="jquery-3.1.1.js"></script>
+    <style>
+        #dom{
+            width:200px;
+            height:200px;
+            background:red;
+            margin:0 auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="dom"></div>
+    <script>
+        /*旋转*/
+        var angle=0;
+        touch.on('#dom', 'touchstart', function(ev) {
+            ev.startRotate();
+            ev.preventDefault();
+        });
+        touch.on('#dom', 'rotate', function(ev) {
+            var totalAngle=angle + ev.rotation;
+            this.style.webkitTransform = 'rotate(' +totalAngle + 'deg)';
+        })
+        /*放大*/
+        $(function() {
+            var target =document.getElementById("dom");
+            target.style.webkitTransition = "all ease 0.05s";
+            touch.on('#dom', 'touchstart', function(ev) {
+                ev.preventDefault();
+            });
+            var initialScale=1;
+            var currentScale;
+            touch.on('#dom', 'pinchend', function(ev) {
+                currentScale=ev.scale-1;
+                currentScale=initialScale+currentScale;
+                currentScale=currentScale> 5 ? 5:currentScale;
+                //自己调节可以放大的最大倍数
+                currentScale=currentScale< 0.1 ? 0.1:currentScale;
+                //自己调节可以放大的最小倍数
+                this.style.webkitTransform = 'scale(' + currentScale + ')';
+                $('#dom').text('当前缩放的比例为：' + currentScale +'倍。');
+            })
+        })
+    </script>
+</body>
+</html>

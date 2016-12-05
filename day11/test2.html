@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script src="jquery-3.1.1.js"></script>
+    <style type="text/css" media="screen">
+
+    </style>
+</head>
+<body>
+    <p>这是第一段</p>
+    <p>这是第二段</p>
+    <p>点击任何段落会出现什么效果呢</p>
+    <button>点击一下</button>
+    <script>
+        $(document).ready(function() {
+            $("p").click(function() {
+                $(this).slideToggle();
+            });
+            $("button").click(function() {
+                $("p").unbind();
+            });
+        })
+    </script>
+</body>
+</html>

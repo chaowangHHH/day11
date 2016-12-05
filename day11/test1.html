@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script src="jquery-3.1.1.js"></script>
+</head>
+<body>
+    <div style="background-color: red;">
+        <p>段落</p>
+        <button>点击</button>
+    </div>
+    <script>
+        $(document).ready(function() {
+            $('div').delegate("button", "click", function(){
+                $("p").slideToggle();
+            })
+        })
+    </script>
+</body>
+</html>
