@@ -10,6 +10,11 @@
 
 var utils = {};
 
+
+
+
+
+//ee
 utils.PCevts = {
     'touchstart': 'mousedown',
     'touchmove': 'mousemove',
